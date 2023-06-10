@@ -1,0 +1,63 @@
+﻿<Window x:Class="Apps.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Apps"
+        mc:Ignorable="d"
+        
+        FontSize = "20"
+        FontFamily="Consolas"
+        
+        Title="App" Height="450" Width="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        
+        <TextBlock 
+            Grid.Column="1" Grid.Row="1" FontSize="36" Grid.ColumnSpan="3" Margin="0,0,0,8" 
+            Text="Projekt Semestralny"/>
+        <TextBlock 
+            Grid.Column="1" Grid.Row="2" Margin="0,0,0,64"
+            Text="Bartłomiej Fryczek"/>
+
+
+        <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <Button 
+                Grid.Column="0" VerticalAlignment="Top" FontWeight="Bold"
+                Margin="64,32" Name="startButton"
+                Content="Start"
+                Click="startButton_Click"/>
+
+            <Button 
+                Grid.Column="1" VerticalAlignment="Top" FontWeight="Bold"
+                Margin="64,32" Name="quitButton"
+                Content="Quit"
+                Click="quitButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>
