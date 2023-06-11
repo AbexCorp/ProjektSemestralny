@@ -8,13 +8,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Application.Model
+namespace StoreApp.Model
 {
     [Table("Categories")]
     public class Category
     {
-        [Key, Column("id_product")]
-        public int IdProduct { get; set; }
+        [Key, Column("id_category")]
+        public int IdCategory { get; set; }
 
 
         [Required, MaxLength(40), Column("name"), NotNull]

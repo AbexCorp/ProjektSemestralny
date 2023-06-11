@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Application.Model
+namespace StoreApp.Model
 {
+    [Table("Warehouse")]
     public class Warehouse
     {
-        public int SerialNumber { get; set; } //pk
+        [Key, Column("serial_number")]
+        public int SerialNumber { get; set; }
+
+        [Column("id_product")]
         public int IdProduct { get; set; } //fk
+
+        [Column("state"), Required, NotNull]
         public bool IsNotSold { get; set; }
     }
 }

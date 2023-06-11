@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Application.Model
+namespace StoreApp.Model
 {
+    [Table("Orders")]
     public class Order
     {
-        public int IdOrder { get; set; } //pk
+        [Key, Column("id_order")]
+        public int IdOrder { get; set; }
+
+        [Column("serial_number")]
         public int SerialNumber { get; set; } //fk
     }
 }

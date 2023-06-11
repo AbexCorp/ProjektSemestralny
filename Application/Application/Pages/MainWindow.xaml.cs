@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreApp.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,12 +23,16 @@ namespace Apps
     {
         public MainWindow()
         {
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            //Go to next window
+            StoreWindow window = new StoreWindow();
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.Show();
+            this.Close();
         }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)

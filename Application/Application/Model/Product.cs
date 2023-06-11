@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Application.Model
+namespace StoreApp.Model
 {
+    [Table("Products")]
     public class Product
     {
-        public int IdProduct { get; set; } //pk
+        [Key, Column("id_product")]
+        public int IdProduct { get; set; }
+
+        [Column("id_category")]
         public int IdCategory { get; set; } //fk
+
+        [Column("name"), Required, NotNull, MaxLength(60)]
         public string? Name { get; set; }
     }
 }
