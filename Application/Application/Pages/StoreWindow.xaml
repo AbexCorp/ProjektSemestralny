@@ -50,32 +50,37 @@
 
             <!-- These buttons will be switching between pages -->
             <Button 
-                Grid.Column="0" Margin="16" Padding="16" FontWeight="Bold"
-                Name="categoriesButton" Content="Categories" />
+                Grid.Column="0" Margin="16" Padding="8" FontWeight="Bold"
+                Name="categoriesButton" Content="Categories"
+                Click="categoriesButton_Click" />
             <Button 
-                Grid.Column="1" Margin="16" Padding="16" FontWeight="Bold"
-                Name="productsButton" Content="Products"/>
+                Grid.Column="1" Margin="16" Padding="8" FontWeight="Bold"
+                Name="productsButton" Content="Products" Click="productsButton_Click"/>
             <Button 
-                Grid.Column="2" Margin="16" Padding="16" FontWeight="Bold"
+                Grid.Column="2" Margin="16" Padding="8" FontWeight="Bold"
                 Name="warehouseButton" Content="Warehouse"/>
             <Button 
-                Grid.Column="3" Margin="16" Padding="16" FontWeight="Bold"
+                Grid.Column="3" Margin="16" Padding="8" FontWeight="Bold"
                 Name="ordersButton" Content="Orders"/>
 
             
             <!-- This button will send you back to menu window -->
             <Button 
-                Grid.Column="5" Margin="16" Padding="16" FontWeight="Bold"
+                Grid.Column="5" Margin="16" Padding="8" FontWeight="Bold"
                 Name="menuButton" Content="Main Menu"
                 Click="menuButton_Click"/>
 
         </Grid>
 
+        <Rectangle 
+            Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,16"
+            HorizontalAlignment="Stretch" Fill="DarkSlateGray" Height="4"/>
         
         <!-- Pages will be displayed here -->
-        <Frame Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="3">
-            
-        </Frame>
+        <Frame
+            Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2" NavigationUIVisibility="Hidden"
+            Name="currentPage" Source="CategoriesPage.xaml"/>
+
 
     </Grid>
     

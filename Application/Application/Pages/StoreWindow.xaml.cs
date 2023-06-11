@@ -31,5 +31,15 @@ namespace StoreApp.Pages
             window.Show();
             this.Close();
         }
+
+        private void categoriesButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Source = new System.Uri("CategoriesPage.xaml", UriKind.Relative);
+        }
+
+        private void productsButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Source = new System.Uri("ProductsPage.xaml", UriKind.Relative);
+        }
     }
 }
