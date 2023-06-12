@@ -12,13 +12,13 @@
       
       Title="CategoriesPage">
 
-    <Grid Background="BurlyWood">
+    <Grid>
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="0"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -33,11 +33,13 @@
             <RowDefinition Height="0"></RowDefinition>
         </Grid.RowDefinitions>
 
+        
+        <!-- List with all categories -->
         <ListBox 
-            Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Padding="0,0,30,0" Margin="0,0,10,0"
-            SelectionMode="Single">
+            Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Padding="0,0,32,0" Margin="0,0,20,0"
+            SelectionMode="Single" Name="categoryList">
             
-            <ListBoxItem Content="asdasdfasdf"/>
+            <ListBoxItem Content="Asdh"/>
             <ListBoxItem Content="sdg sadgsadg"/>
             <ListBoxItem Content="udz asdg"/>
             <ListBoxItem Content="udasdg sgz"/>
@@ -47,8 +49,19 @@
             <ListBoxItem Content="udzaysdgy"/>
         </ListBox>
 
-        <Button Grid.Column="2" Grid.Row="1" Content="asdasdf" Padding="6" Margin="16,0"/>
-        <Button Grid.Column="3" Grid.Row="1" Content="asdasdf" Padding="6" Margin="16,0"/>
+        
+        <TextBox 
+            Grid.Column="2" Grid.Row="1" Margin="16" Padding="8" TextWrapping="Wrap" 
+            MaxLength="40" Name="categoryNameBox"/>
+        <Button 
+            Grid.Column="3" Grid.Row="1" Padding="6" Margin="16"
+            Content="Add Category" Name="addCategoryButton"
+            Click="addCategoryButton_Click"/>
+
+        
+        <Button 
+            Grid.Column="2" Grid.Row="2" Padding="6" Margin="16"
+            Content="Remove Category" Name="removeCategoryButton" Click="removeCategoryButton_Click"/>
 
 
 

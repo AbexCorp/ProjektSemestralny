@@ -55,7 +55,8 @@
                 Click="categoriesButton_Click" />
             <Button 
                 Grid.Column="1" Margin="16" Padding="8" FontWeight="Bold"
-                Name="productsButton" Content="Products" Click="productsButton_Click"/>
+                Name="productsButton" Content="Products"
+                Click="productsButton_Click"/>
             <Button 
                 Grid.Column="2" Margin="16" Padding="8" FontWeight="Bold"
                 Name="warehouseButton" Content="Warehouse"/>

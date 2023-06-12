@@ -24,5 +24,23 @@ namespace StoreApp.Pages
         {
             InitializeComponent();
         }
+
+        private void addCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (categoryNameBox.Text == null || categoryNameBox.Text == "")
+            {
+                MessageBox.Show("Category name can't be empty");
+                return;
+            }
+            categoryList.Items.Add(categoryNameBox.Text);
+            categoryNameBox.Clear();
+        }
+
+        private void removeCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (categoryList.SelectedItem == null)
+                return;
+            categoryList.Items.Remove(categoryList.SelectedItem);
+        }
     }
 }
