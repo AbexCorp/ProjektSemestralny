@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using StoreApp.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
 namespace Apps
 {
     /// <summary>
@@ -38,6 +41,39 @@ namespace Apps
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+
+
+
+
+        private async void tempbutton_Click(object sender, RoutedEventArgs e)
+        {
+            using(DatabaseContext db = new())
+            {
+                bool deleted = await db.Database.EnsureDeletedAsync();
+                bool created = await db.Database.EnsureCreatedAsync();
+                MessageBox.Show
+                (
+                    $"Was deleted: {deleted}" + Environment.NewLine +
+                    $"Was created: {created}" + Environment.NewLine +
+                    db.Database.GenerateCreateScript()
+                );
+            }
+        }
+
+        private async void resetDatabaseButton_Click(object sender, RoutedEventArgs e)
+        {
+            using(DatabaseContext db = new())
+            {
+                bool deleted = await db.Database.EnsureDeletedAsync();
+                bool created = await db.Database.EnsureCreatedAsync();
+                MessageBox.Show
+                (
+                    $"Database was deleted: {deleted}" + Environment.NewLine +
+                    $"Database was Created: {created}"
+                );
+            }
         }
     }
 }

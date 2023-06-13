@@ -15,7 +15,12 @@ namespace StoreApp.Model
         [Key, Column("id_order")]
         public int IdOrder { get; set; }
 
-        [Column("serial_number")]
-        public int SerialNumber { get; set; } //fk
+        //[Column("serial_number")]
+        //public int SerialNumber { get; set; } //fk
+
+
+
+        public int SingularObjectId { get; set; }
+        public virtual SingularObject SingularObject { get; set; }
     }
 }

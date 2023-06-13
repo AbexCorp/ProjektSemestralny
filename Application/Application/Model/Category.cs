@@ -16,8 +16,12 @@ namespace StoreApp.Model
         [Key, Column("id_category")]
         public int IdCategory { get; set; }
 
-
         [Required, MaxLength(40), Column("name"), NotNull]
         public string? Name { get; set; }
+
+
+
+
+        public virtual List<Product> Products { get; set; }
     }
 }

@@ -11,15 +11,23 @@ using System.Diagnostics.CodeAnalysis;
 namespace StoreApp.Model
 {
     [Table("Warehouse")]
-    public class Warehouse
+    public class SingularObject
     {
         [Key, Column("serial_number")]
         public int SerialNumber { get; set; }
 
-        [Column("id_product")]
-        public int IdProduct { get; set; } //fk
+        //[Column("id_product")]
+        //public int IdProduct { get; set; } //fk
 
         [Column("state"), Required, NotNull]
         public bool IsNotSold { get; set; }
+
+
+
+        public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
+
+        public int OrderId { get; set; }
+        public virtual Order? Order { get; set; }
     }
 }

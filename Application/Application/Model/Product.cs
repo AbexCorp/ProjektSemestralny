@@ -16,10 +16,18 @@ namespace StoreApp.Model
         [Key, Column("id_product")]
         public int IdProduct { get; set; }
 
-        [Column("id_category")]
-        public int IdCategory { get; set; } //fk
+        //[Column("id_category")]
+        //public int IdCategory { get; set; } //fk
 
         [Column("name"), Required, NotNull, MaxLength(60)]
         public string? Name { get; set; }
+
+
+
+
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+
+        public virtual List<SingularObject> SingularObject { get; set; }
     }
 }
