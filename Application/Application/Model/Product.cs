@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 
 namespace StoreApp.Model
 {
     [Table("Products")]
+    [Index(nameof(Product.Name), IsUnique = true)]
     public class Product
     {
         [Key, Column("id_product")]
