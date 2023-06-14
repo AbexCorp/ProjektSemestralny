@@ -13,10 +13,10 @@ namespace StoreApp.DataAccess
 {
     public class DatabaseContext : DbContext
     {
-        DbSet<Category> Categories { get; set; }
-        DbSet<Product> Products { get; set; }
-        DbSet<SingularObject> Warehouse { get; set; }
-        DbSet<Order> Orders { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<SingularObject> Warehouse { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

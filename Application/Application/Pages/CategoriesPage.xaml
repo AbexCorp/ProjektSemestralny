@@ -36,17 +36,11 @@
         
         <!-- List with all categories -->
         <ListBox 
-            Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Padding="0,0,32,0" Margin="0,0,20,0"
+            Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"
+            Padding="0,0,32,0" Margin="0,0,20,0"
+            SelectedValue="{Binding IdCategory}"
+            SelectedValuePath="{Binding IdCategory}"
             SelectionMode="Single" Name="categoryList">
-            
-            <ListBoxItem Content="Asdh"/>
-            <ListBoxItem Content="sdg sadgsadg"/>
-            <ListBoxItem Content="udz asdg"/>
-            <ListBoxItem Content="udasdg sgz"/>
-            <ListBoxItem Content="uyw asdgdz"/>
-            <ListBoxItem Content="udzas asdg"/>
-            <ListBoxItem Content="udza asdgy"/>
-            <ListBoxItem Content="udzaysdgy"/>
         </ListBox>
 
         

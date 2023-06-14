@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
+using StoreApp.DataAccess;
+using StoreApp.Model;
 
 namespace StoreApp.Pages
 {
@@ -23,7 +26,19 @@ namespace StoreApp.Pages
         public CategoriesPage()
         {
             InitializeComponent();
+
+            using(DatabaseContext db = new())
+            {
+                IQueryable<Category> categories = db.Categories
+                    .OrderBy(p => p.IdCategory);
+                foreach (Category category in categories)
+                {
+                    categoryList.Items.Add(category.Name);
+                }
+            }
         }
+
+
 
         private void addCategoryButton_Click(object sender, RoutedEventArgs e)
         {
@@ -32,15 +47,30 @@ namespace StoreApp.Pages
                 MessageBox.Show("Category name can't be empty");
                 return;
             }
+            using(DatabaseContext db = new())
+            {
+                Category category = new Category { Name = categoryNameBox.Text };
+                db.Categories.Add(category);
+                db.SaveChanges();
+            }
             categoryList.Items.Add(categoryNameBox.Text);
             categoryNameBox.Clear();
         }
 
         private void removeCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            if (categoryList.SelectedItem == null)
-                return;
-            categoryList.Items.Remove(categoryList.SelectedItem);
+            using (DatabaseContext db = new())
+            {
+                if (categoryList.SelectedItem == null)
+                    return;
+
+                IQueryable<Category> categoryToDelete = db.Categories
+                    .Where(p => p.Name == categoryList.SelectedItem.ToString());
+                db.Categories.RemoveRange(categoryToDelete);
+                db.SaveChanges();
+
+                categoryList.Items.Remove(categoryList.SelectedItem);
+            }
         }
     }
 }
