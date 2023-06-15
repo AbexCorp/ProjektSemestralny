@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using Microsoft.EntityFrameworkCore;
 using StoreApp.DataAccess;
 using StoreApp.Model;
@@ -82,6 +83,11 @@ namespace StoreApp.Pages
 
         private void removeProductButton_Click(object sender, RoutedEventArgs e)
         {
+            if(productsGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Please choose a product");
+                return;
+            }
             Product product = productsGrid.SelectedItem as Product;
             using (DatabaseContext db = new())
             {
@@ -131,6 +137,38 @@ namespace StoreApp.Pages
                     productsGrid.Items.Add(product);
                 }
             }
+        }
+
+        private void addStockButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(productsGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Please choose a product");
+                return;
+            }
+            if (!int.TryParse(amountBox.Text, out int stoctNumber))
+            {
+                MessageBox.Show("Please input a correct number");
+                return;
+            }
+            if(stoctNumber > 20 || stoctNumber < 1)
+            {
+                MessageBox.Show("Please input a number between 1 and 20");
+                return;
+            }
+
+            Product product = productsGrid.SelectedItem as Product;
+            using (DatabaseContext db = new())
+            {
+                SingularObject newObject = new SingularObject { ProductId = product.IdProduct, IsNotSold = true };
+                for(int i = 0; i < stoctNumber; i++)
+                {
+                    db.Warehouse.Add(newObject);
+                }
+                int res = db.SaveChanges();
+                MessageBox.Show($"Added {res} {product.Name} to warehouse");
+            }
+            amountBox.Clear();
         }
     }
 }

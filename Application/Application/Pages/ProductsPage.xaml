@@ -66,26 +66,32 @@
             HorizontalAlignment="Stretch" Fill="DarkSlateGray" Height="2"/>
 
 
-        <!-- Removing -->
+        <!-- Removing Adding Stock -->
+        <TextBox 
+            Grid.Column="2" Grid.Row="3" Margin="16" Padding="8" TextWrapping="Wrap" 
+            MaxLength="2" Name="amountBox"/>
         <Button 
-            Grid.Column="2" Grid.Row="3" Padding="6" Margin="16"
+            Grid.Column="3" Grid.Row="3" Padding="6" Margin="16"
+            Content="Add Stock" Name="addStockButton" Click="addStockButton_Click"/>
+        <Button 
+            Grid.Column="2" Grid.Row="4" Padding="6" Margin="16"
             Content="Remove Product" Name="removeProductButton"
             Click="removeProductButton_Click"/>
         <Rectangle 
-            Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="3" Margin="0"
+            Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="3" Margin="0"
             HorizontalAlignment="Stretch" Fill="DarkSlateGray" Height="2"/>
 
 
         <!-- Filtering -->
         <ComboBox
-            Grid.Column="2" Grid.Row="5" Margin="16" Padding="8"
+            Grid.Column="2" Grid.Row="6" Margin="16" Padding="8"
             Name="filterCategory"/>
         <Button 
-            Grid.Column="3" Grid.Row="5" Padding="6" Margin="16"
+            Grid.Column="3" Grid.Row="6" Padding="6" Margin="16"
             Content="Filter" Name="filterProductsButton" 
             Click="filterProductsButton_Click"/>
         <Button 
-            Grid.Column="4" Grid.Row="5" Padding="6" Margin="16"
+            Grid.Column="4" Grid.Row="6" Padding="6" Margin="16"
             Content="Reset Filter" Name="resetFilterButton" Click="resetFilterButton_Click"/>
     </Grid>
 </Page>

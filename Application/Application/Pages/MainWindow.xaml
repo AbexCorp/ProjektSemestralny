@@ -76,11 +76,6 @@
                 Content="Reset Database"
                 Click="resetDatabaseButton_Click"/>
 
-            <Button 
-                Grid.Column="1" FontWeight="Bold" FontSize="22" Padding="24"
-                Margin="64,32,128,32" Name="tempbutton"
-                Content="tempbutton" 
-                Click="tempbutton_Click"/>
         </Grid>
     </Grid>
 </Window>

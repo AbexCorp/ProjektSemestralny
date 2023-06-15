@@ -12,7 +12,7 @@
       
       Title="CategoriesPage">
 
-    <Grid>
+    <Grid Background="LightBlue">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0"></ColumnDefinition>
