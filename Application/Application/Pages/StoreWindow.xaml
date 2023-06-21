@@ -60,11 +60,11 @@
             <Button 
                 Grid.Column="2" Margin="16" Padding="8" FontWeight="Bold"
                 Name="warehouseButton" Content="Warehouse" 
-                Click="workInProgress_Click"/>
+                Click="warehouseButton_Click"/>
             <Button 
                 Grid.Column="3" Margin="16" Padding="8" FontWeight="Bold"
                 Name="ordersButton" Content="Orders" 
-                Click="workInProgress_Click"/>
+                Click="ordersButton_Click"/>
 
             
             <!-- This button will send you back to menu window -->

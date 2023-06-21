@@ -42,9 +42,14 @@ namespace StoreApp.Pages
             currentPage.Source = new System.Uri("ProductsPage.xaml", UriKind.Relative);
         }
 
-        private void workInProgress_Click(object sender, RoutedEventArgs e)
+        private void warehouseButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Under Construction");
+            currentPage.Source = new System.Uri("WarehousePage.xaml", UriKind.Relative);
+        }
+
+        private void ordersButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Source = new System.Uri("OrdersPage.xaml", UriKind.Relative);
         }
     }
 }
