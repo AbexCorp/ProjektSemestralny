@@ -119,9 +119,9 @@ namespace StoreApp.Pages
 
         private void filterProductsButton_Click(object sender, RoutedEventArgs e)
         {
-            if(filterCategory.Text == null)
+            if(filterCategory.Text == null || filterCategory.SelectedIndex == -1)
             {
-                MessageBox.Show("Choose category for the new product");
+                MessageBox.Show("Choose a category");
                 return;
             }
             productsGrid.Items.Clear();
@@ -194,7 +194,6 @@ namespace StoreApp.Pages
                 int res = db.SaveChanges();
                 MessageBox.Show($"Added {res} {product.Name} to warehouse");
 
-                //int oldToDeleteIndex = productsGrid.Items.IndexOf(product);
                 IQueryable<Product> updatedProduct = db.Products
                     .Include(p => p.Category)
                     .Include(p => p.SingularObject)
@@ -206,6 +205,7 @@ namespace StoreApp.Pages
         }
 
         #endregion
+
 
         #region <<< Selling >>>
 
@@ -226,9 +226,45 @@ namespace StoreApp.Pages
                 MessageBox.Show("Please input a number between 1 and 10");
                 return;
             }
+
             Product product = productsGrid.SelectedItem as Product;
 
-            //if(stoctToSellNumber > product.SingularObject.Count)
+            if(product.SingularObject.Count < stoctToSellNumber)
+            {
+                MessageBox.Show("Not enough stock to sell");
+                return;
+            }
+
+            using (DatabaseContext db = new())
+            {
+                var findStock = db.Warehouse
+                    .Include(s => s.Product)
+                    .Where(stockToDelete => stockToDelete.ProductId == product.IdProduct)
+                    .Take(stoctToSellNumber);
+
+                if(stoctToSellNumber > findStock.Count())
+                {
+                    MessageBox.Show("Not enough stock to sell");
+                    return;
+                }
+
+                db.RemoveRange(findStock);
+                int result = db.SaveChanges();
+                MessageBox.Show($"Sold {result} of {product.Name}");
+
+
+                Order newOrder = new Order { Amount = stoctToSellNumber, Date = DateTime.Now, ProductId = product.IdProduct };
+                db.Orders.Add(newOrder);
+                db.SaveChanges();
+
+
+                IQueryable<Product> updatedProduct = db.Products
+                    .Include(p => p.Category)
+                    .Include(p => p.SingularObject)
+                    .Where(p => p == product);
+                productsGrid.Items.Insert(productsGrid.Items.IndexOf(product), updatedProduct.FirstOrDefault());
+                productsGrid.Items.RemoveAt(productsGrid.Items.IndexOf(product));
+            }
         }
 
         #endregion

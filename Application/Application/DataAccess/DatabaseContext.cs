@@ -42,12 +42,13 @@ namespace StoreApp.DataAccess
                 .HasForeignKey<SingularObject>(dkey => dkey.SerialNumber)
                 .IsRequired();
             */
+            /*
             modelBuilder.Entity<SingularObject>()
                 .HasOne(e => e.Order)
                 .WithOne(e => e.SingularObject)
                 .HasForeignKey<Order>(dkey => dkey.SingularObjectId)
                 .IsRequired();
-
+            */
 
             Initialize(modelBuilder);
         }
