@@ -31,5 +31,7 @@ namespace StoreApp.Model
         public virtual Category Category { get; set; }
 
         public virtual List<SingularObject> SingularObject { get; set; }
+
+        public virtual List<Order> Order { get; set; }
     }
 }

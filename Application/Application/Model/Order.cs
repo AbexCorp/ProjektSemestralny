@@ -18,9 +18,18 @@ namespace StoreApp.Model
         //[Column("serial_number")]
         //public int SerialNumber { get; set; } //fk
 
+        [Column("Amount")]
+        public int Amount { get; set; }
+
+        [Column("Date")]
+        public DateTime Date { get; set; }
 
 
+        public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
+        /*
         public int SingularObjectId { get; set; }
         public virtual SingularObject SingularObject { get; set; }
+        */
     }
 }

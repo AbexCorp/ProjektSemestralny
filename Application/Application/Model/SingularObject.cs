@@ -19,15 +19,17 @@ namespace StoreApp.Model
         //[Column("id_product")]
         //public int IdProduct { get; set; } //fk
 
-        [Column("state"), Required, NotNull]
-        public bool IsNotSold { get; set; }
+        //[Column("state"), Required, NotNull]
+        //public bool IsNotSold { get; set; }
 
 
 
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
+        /*
         public int OrderId { get; set; }
         public virtual Order? Order { get; set; }
+        */
     }
 }

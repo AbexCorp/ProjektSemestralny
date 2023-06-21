@@ -32,6 +32,7 @@ namespace StoreApp.Pages
                 //List
                 IQueryable<Product> products = db.Products
                     .Include(p => p.Category)
+                    .Include(p => p.SingularObject)
                     .OrderBy(p => p.IdProduct);
 
                 foreach (var product in products)
@@ -50,6 +51,10 @@ namespace StoreApp.Pages
             }
         }
 
+
+
+        #region <<< Adding new products >>>
+
         private void addProductButton_Click(object sender, RoutedEventArgs e)
         {
             string name = productNameBox.Text;
@@ -59,6 +64,11 @@ namespace StoreApp.Pages
                 return;
             }
             if(selectCategory.Text == null)
+            {
+                MessageBox.Show("Choose category for the new product");
+                return;
+            }
+            if(selectCategory.SelectedValue == null)
             {
                 MessageBox.Show("Choose category for the new product");
                 return;
@@ -81,6 +91,11 @@ namespace StoreApp.Pages
             selectCategory.SelectedIndex = -1;
         }
 
+        #endregion
+
+
+        #region <<< Removing products >>>
+
         private void removeProductButton_Click(object sender, RoutedEventArgs e)
         {
             if(productsGrid.SelectedItem == null)
@@ -97,6 +112,10 @@ namespace StoreApp.Pages
             productsGrid.Items.Remove(product);
         }
 
+        #endregion
+
+
+        #region <<< Filtering products >>>
 
         private void filterProductsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -111,6 +130,7 @@ namespace StoreApp.Pages
             {
                 IQueryable<Product> products = db.Products
                     .Include(p => p.Category)
+                    .Include(p => p.SingularObject)
                     .Where(p => p.Category.Name == filterCategory.Text)
                     .OrderBy(p => p.IdProduct);
 
@@ -130,6 +150,7 @@ namespace StoreApp.Pages
             {
                 IQueryable<Product> products = db.Products
                     .Include(p => p.Category)
+                    .Include(p => p.SingularObject)
                     .OrderBy(p => p.IdProduct);
 
                 foreach (var product in products)
@@ -138,6 +159,11 @@ namespace StoreApp.Pages
                 }
             }
         }
+
+        #endregion
+
+
+        #region <<< Adding new stock >>>
 
         private void addStockButton_Click(object sender, RoutedEventArgs e)
         {
@@ -160,15 +186,51 @@ namespace StoreApp.Pages
             Product product = productsGrid.SelectedItem as Product;
             using (DatabaseContext db = new())
             {
-                SingularObject newObject = new SingularObject { ProductId = product.IdProduct, IsNotSold = true };
                 for(int i = 0; i < stoctNumber; i++)
                 {
+                    SingularObject newObject = new SingularObject { ProductId = product.IdProduct };
                     db.Warehouse.Add(newObject);
                 }
                 int res = db.SaveChanges();
                 MessageBox.Show($"Added {res} {product.Name} to warehouse");
+
+                //int oldToDeleteIndex = productsGrid.Items.IndexOf(product);
+                IQueryable<Product> updatedProduct = db.Products
+                    .Include(p => p.Category)
+                    .Include(p => p.SingularObject)
+                    .Where(p => p == product);
+                productsGrid.Items.Insert(productsGrid.Items.IndexOf(product), updatedProduct.FirstOrDefault());
+                productsGrid.Items.RemoveAt(productsGrid.Items.IndexOf(product));
             }
             amountBox.Clear();
         }
+
+        #endregion
+
+        #region <<< Selling >>>
+
+        private void sellProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(productsGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Please choose a product");
+                return;
+            }
+            if (!int.TryParse(amountBox.Text, out int stoctToSellNumber))
+            {
+                MessageBox.Show("Please input a correct number");
+                return;
+            }
+            if(stoctToSellNumber > 10 || stoctToSellNumber < 1)
+            {
+                MessageBox.Show("Please input a number between 1 and 10");
+                return;
+            }
+            Product product = productsGrid.SelectedItem as Product;
+
+            //if(stoctToSellNumber > product.SingularObject.Count)
+        }
+
+        #endregion
     }
 }
