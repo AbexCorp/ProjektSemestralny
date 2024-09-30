@@ -1,4 +1,4 @@
-# ProjektSemestralny
+# WPF Store Terminal with Entity Framework Database
 
 A simple WPF application, simulating a store terminal. 
 
